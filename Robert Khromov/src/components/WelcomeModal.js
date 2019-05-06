@@ -5,8 +5,10 @@ export default class Welcome extends React.Component {
         super(props);
 
         this.state = {
-            display: false
-        }
+            display: true
+        };
+
+        this.ChangeVisibility = this.ChangeVisibility.bind(this)
     }
 
     ChangeVisibility() {
@@ -17,12 +19,12 @@ export default class Welcome extends React.Component {
 
         let welcome;
         if (this.state.display) {
-            welcome = `
-             <div>
-                <h3>Добро пожаловать на сайт!</h3>
-                <input onClick={ChangeVisibility()} value='ok'/>
-             </div>
-            `
+            welcome = (
+                <div id="welcome">
+                    <h3>Добро пожаловать на сайт!</h3>
+                    <input type="button" onClick={this.ChangeVisibility} value='Закрыть'/>
+                </div>
+            )
         }
 
         return (
@@ -30,11 +32,6 @@ export default class Welcome extends React.Component {
                 {welcome}
             </>
         )
-    }
-
-    componentDidMount() {
-        // ¯\_(ツ)_/¯
-        this.setState({display: true})
     }
 }
 

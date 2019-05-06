@@ -5,6 +5,7 @@ import Blog from './components/Blog'
 
 let posts = [
     {
+        id: 1,
         title: 'Lorem',
         subtitle: 'Lorem ipsum dolor',
         body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque corporis eos expedita facere ' +
@@ -13,6 +14,7 @@ let posts = [
         author: 'Autor',
     },
     {
+        id: 3,
         title: 'Lorem',
         subtitle: 'Lorem ipsum dolor',
         body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque corporis eos expedita facere ' +
@@ -22,6 +24,7 @@ let posts = [
     },
 
     {
+        id: 2,
         title: 'Lorem',
         subtitle: 'Lorem ipsum dolor',
         body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque corporis eos expedita facere ' +
@@ -34,10 +37,10 @@ let posts = [
 class App extends React.Component {
     render() {
         return (
-            <div>
+            <>
                 <Welcome/>
                 <Blog posts={posts}/>
-            </div>
+            </>
         )
     }
 }

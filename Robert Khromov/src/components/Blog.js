@@ -11,15 +11,17 @@ export default class Blog extends React.Component {
 
 
     render() {
-        this.state.posts = this.props.posts.map((i) =>
-            <Post
-                title={this.props.posts[i].title}
-                subtitle={this.props.posts[i].subtitle}
-                body={this.props.posts[i].body}
-                date={this.props.posts[i].date}
-                author={this.props.posts[i].author}
-            />
-        );
+        this.state.posts = this.props.posts.map((i) => {
+            return (
+                <Post
+                    key={i.id}
+                    title={i.title}
+                    subtitle={i.subtitle}
+                    body={i.body}
+                    date={i.date}
+                    author={i.author}
+                />);
+        });
 
         return (
             <div>
