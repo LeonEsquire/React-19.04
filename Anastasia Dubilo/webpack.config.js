@@ -2,11 +2,11 @@ const path = require('path');
 
 module.exports = {
     entry: './src/App.js',
-    output:{
+    output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist')
     },
-    module:{
+    module: {
         rules: [
             {
                 test: /\.js?$/,
@@ -19,5 +19,8 @@ module.exports = {
             }
         ]
     },
-    mode: 'development'
-}
+    devServer: {
+        contentBase: path.resolve(__dirname, 'dist'),
+        historyApiFallback: true,
+    }
+};
