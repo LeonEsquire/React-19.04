@@ -1,45 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Welcome from './components/WelcomeModal'
-import Blog from './components/Blog'
+import {browserHistory, IndexRoute, Route, Router} from 'react-router';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-let posts = [
-    {
-        title: 'Lorem',
-        subtitle: 'Lorem ipsum dolor',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque corporis eos expedita facere ' +
-            'harum nisi non vero? Aut doloremque doloribus incidunt iste maiores molestias nostrum perspiciatis similique tenetur veniam?',
-        date: '18.03.1991',
-        author: 'Autor',
-    },
-    {
-        title: 'Lorem',
-        subtitle: 'Lorem ipsum dolor',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque corporis eos expedita facere ' +
-            'harum nisi non vero? Aut doloremque doloribus incidunt iste maiores molestias nostrum perspiciatis similique tenetur veniam?',
-        date: '28.03.1991',
-        author: 'Autor_2',
-    },
+import Layout from './app/layouts/Layout'
+import MainPage from './app/pages/Main'
+import Users from './app/pages/Users'
+import User from './app/pages/User'
 
-    {
-        title: 'Lorem',
-        subtitle: 'Lorem ipsum dolor',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque corporis eos expedita facere ' +
-            'harum nisi non vero? Aut doloremque doloribus incidunt iste maiores molestias nostrum perspiciatis similique tenetur veniam?',
-        date: '08.03.1991',
-        author: 'Autor_3',
-    },
-];
+import PageNotFound from './app/pages/PageNotFound'
 
-class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <Welcome/>
-                <Blog posts={posts}/>
-            </div>
-        )
-    }
-}
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(
+    <Router history={browserHistory}>
+        <Route path="/" component={Layout}>
+            <IndexRoute component={MainPage}/>
+
+            <Route path="users" component={Users}>
+                <Route path=":userID" component={User}/>
+            </Route>
+
+            <Route path="*" component={PageNotFound}/>
+        </Route>
+    </Router>,
+    document.getElementById('root'));
