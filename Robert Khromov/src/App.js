@@ -8,6 +8,11 @@ import MainPage from './app/pages/Main'
 import Users from './app/pages/Users'
 import User from './app/pages/User'
 
+import Post from './app/pages/Post'
+import Posts from './app/pages/Posts'
+import Comment from './app/pages/Comment'
+import Comments from './app/pages/Comments'
+
 import PageNotFound from './app/pages/PageNotFound'
 
 
@@ -18,6 +23,14 @@ ReactDOM.render(
 
             <Route path="users" component={Users}>
                 <Route path=":userID" component={User}/>
+            </Route>
+
+            <Route path="posts" component={Posts}>
+                <Route path=":postID" component={Post}/>
+            </Route>
+
+            <Route path="comments" component={Comments}>
+                <Route path=":commentID" component={Comment}/>
             </Route>
 
             <Route path="*" component={PageNotFound}/>

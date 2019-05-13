@@ -19,6 +19,8 @@ export default class Layout extends Component {
                 <Menu brand={this.brand}>
                     <MenuItem href='/' active={this.isActive('/')}>Главная</MenuItem>
                     <MenuItem href='/users' active={this.isActive('/users')}>Пользователи</MenuItem>
+                    <MenuItem href='/posts' active={this.isActive('/posts')}>Посты</MenuItem>
+                    <MenuItem href='/comments' active={this.isActive('/comments')}>Коментарии</MenuItem>
                 </Menu>
                 <div className='container'>
                     <div className="row">
