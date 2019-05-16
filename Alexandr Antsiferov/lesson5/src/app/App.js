@@ -1,19 +1,25 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, BrowserHistory} from 'react-router'
+import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Layout from './layouts/Layout';
-import MainPage from './components/Main';
-import About from './components/About';
-import Contacts from './components/Contacts';
+import MainPage from './pages/Main';
+import Users from './pages/Users';
+import User from './pages/User';
+import Posts from './pages/Posts';
+import Post from './pages/Post';
+import PageNotFound from './pages/PageNotFound';
 
-class App extends Component {
-  render() {
-    return <div>Hallo</div>;
-  }
-}
-
-ReactDOM.render(<Router>
-  
+ReactDOM.render(<Router history={browserHistory}>
+  <Route path="/" component={Layout}>
+    <IndexRoute component={MainPage}/>
+    <Route path="users" component={Users}>
+      <Route path=":userId" component={User}/>
+    </Route>
+    <Route path="posts" component={Posts}>
+      <Route path=":postId" component={Post}/>
+    </Route>
+    <Route path="*" component={PageNotFound}/>
+  </Route>
 </Router>, document.querySelector("#root"));

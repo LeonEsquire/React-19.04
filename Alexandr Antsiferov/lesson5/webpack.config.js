@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/app/App.js',
+  entry: './src/app/app.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js'
@@ -21,6 +21,7 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist')
+    contentBase: path.resolve(__dirname, 'dist'),
+    historyApiFallback: true
   }
 }
