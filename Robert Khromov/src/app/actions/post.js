@@ -1,5 +1,5 @@
 import dispatcher from "../dispatcher";
-import { ADD_POST, GET_POSTS } from "../constants/postConstants";
+import { ADD_POST, GET_POSTS } from "../constants/post";
 import axios from "axios";
 
 export function addPost(title, userId, body) {

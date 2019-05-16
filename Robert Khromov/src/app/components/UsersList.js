@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import User from '../components/User';
-import axios from 'axios';
+import store from "../stores/users";
+import {getUsers} from "../actions/user";
 
 export default class UsersList extends Component {
 
@@ -9,7 +10,22 @@ export default class UsersList extends Component {
 
         this.state = {
             users: []
-        }
+        };
+
+        this.onUsersChange = this.onUsersChange.bind(this);
+    }
+
+    onUsersChange() {
+        this.setState({users: store.users})
+    }
+
+    componentDidMount() {
+        getUsers();
+        store.on('change', this.onUsersChange);
+    }
+
+    componentWillUnmount() {
+        store.removeListener('change', this.onUsersChange);
     }
 
     render() {
@@ -26,12 +42,5 @@ export default class UsersList extends Component {
                 {users}
             </div>
         );
-    }
-
-    componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(response => {
-                this.setState({users: response.data});
-            })
     }
 }

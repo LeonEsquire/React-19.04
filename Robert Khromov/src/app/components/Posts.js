@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import axios from "axios";
 import Post from "../components/Post";
+import {addPost, getPosts} from '../actions/post';
 import store from '../stores/posts';
 
 
@@ -8,11 +8,9 @@ export default class Posts extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             posts: []
         };
-
         this.onPostChange = this.onPostChange.bind(this);
     }
 
@@ -20,6 +18,14 @@ export default class Posts extends Component {
         this.setState({posts: store.posts})
     }
 
+    componentDidMount() {
+        getPosts();
+        store.on('change', this.onPostChange);
+    }
+
+    componentWillUnmount() {
+        store.removeListener('change', this.onPostChange);
+    }
 
     render() {
 
@@ -36,9 +42,4 @@ export default class Posts extends Component {
             </div>
         )
     };
-
-    componentDidMount() {
-        getPosts();
-        store.on('change', this.onPostChange);
-    }
 }

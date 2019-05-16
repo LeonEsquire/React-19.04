@@ -1,8 +1,8 @@
-import {ADD_POST, GET_POSTS} from '../constants/postConstants';
+import {ADD_POST, GET_POSTS} from '../constants/post';
 import dispatcher from '../dispatcher';
 import {EventEmitter} from 'events';
 
-export default class postStore extends EventEmitter {
+class postStore extends EventEmitter {
     constructor() {
         super();
         this.posts = [];
@@ -40,3 +40,4 @@ export default class postStore extends EventEmitter {
 
 const store = new postStore();
 dispatcher.register(store.handleActions);
+export default store;
