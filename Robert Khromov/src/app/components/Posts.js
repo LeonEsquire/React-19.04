@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import Post from "../components/Post";
+import store from '../stores/posts';
+
 
 export default class Posts extends Component {
 
@@ -9,8 +11,15 @@ export default class Posts extends Component {
 
         this.state = {
             posts: []
-        }
+        };
+
+        this.onPostChange = this.onPostChange.bind(this);
     }
+
+    onPostChange() {
+        this.setState({posts: store.posts})
+    }
+
 
     render() {
 
@@ -29,9 +38,7 @@ export default class Posts extends Component {
     };
 
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
-            .then(response => {
-                this.setState({posts: response.data});
-            })
+        getPosts();
+        store.on('change', this.onPostChange);
     }
 }
