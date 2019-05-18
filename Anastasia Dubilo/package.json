@@ -6,17 +6,26 @@
   "scripts": {
     "dev": "webpack",
     "watch": "webpack --mode development --watch",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
     "create-react-class": "^15.6.3",
     "css-loader": "^2.1.1",
+    "install": "^0.12.2",
+    "jquery": "^3.4.1",
+    "npm": "^6.9.0",
+    "popper": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
+    "react-router": "^3.2.1",
+    "react-router-native": "^5.0.0",
     "style-loader": "^0.23.1"
   },
   "devDependencies": {
@@ -25,6 +34,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1"
+    "webpack-cli": "^3.3.1",
+    "webpack-dev-server": "^3.3.1"
   }
 }
