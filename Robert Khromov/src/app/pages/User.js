@@ -1,30 +1,31 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import UserProfile from '../components/User';
+import {connect} from "react-redux";
+import {getUsers} from "../actions/user";
 
 class User extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            user: null
-        }
+    componentDidMount() {
+        getUsers();
     }
 
     render() {
         return (
             <div>
-                {this.state.user && <UserProfile {...this.state.user} />}
+                {this.props.user && <UserProfile {...this.props.user} />}
             </div>
         );
     }
-
-    componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/users/${this.props.params.userID}`)
-            .then(response => {
-                this.setState({user: response.data});
-            })
-    }
 }
 
-export default User;
+function mapUserStoreToProps(state, context) {
+    for (let i = 0; i < state.users.users.length; i++) {
+        if (Number(state.users.users[i].id) === Number(context.match.params.userID)) {
+            return {user: state.users.users[i]}
+        }
+    }
+    return (
+        {user: null}
+    )
+}
+
+export default connect(mapUserStoreToProps)(User);

@@ -1,19 +1,19 @@
-import dispatcher from "../dispatcher";
-import { ADD_POST, GET_POSTS } from "../constants/post";
 import axios from "axios";
-
-export function addPost(title, userId, body) {
-    dispatcher.dispatch({
-        type: ADD_POST,
-        data: {title, userId, body}
-    })
-}
+import store from "../store"
 
 export function getPosts() {
-    axios.get("http://jsonplaceholder.typicode.com/posts/").then(response => {
-        dispatcher.dispatch({
-            type: GET_POSTS,
-            data: response.data
-        });
+    return store.dispatch({
+        type: "GET_POSTS",
+        payload: axios.get("http://jsonplaceholder.typicode.com/posts/").then(
+            response => response.data
+        )
     });
+}
+
+export function removePosts(id) {
+    return store.dispatch({type: "DELETE_POST", payload: id})
+}
+
+export function addPost(newPost) {
+    return store.dispatch({type: "ADD_POST", payload: newPost})
 }

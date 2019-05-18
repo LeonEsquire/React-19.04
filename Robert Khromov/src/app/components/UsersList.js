@@ -1,46 +1,58 @@
 import React, {Component} from 'react';
 import User from '../components/User';
-import store from "../stores/users";
-import {getUsers} from "../actions/user";
+import {addNewUser, getUsers} from "../actions/user";
+import {connect} from "react-redux";
 
-export default class UsersList extends Component {
+class UsersList extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            users: []
-        };
-
-        this.onUsersChange = this.onUsersChange.bind(this);
-    }
-
-    onUsersChange() {
-        this.setState({users: store.users})
+        this.createNewUser = this.createNewUser.bind(this);
     }
 
     componentDidMount() {
         getUsers();
-        store.on('change', this.onUsersChange);
     }
 
-    componentWillUnmount() {
-        store.removeListener('change', this.onUsersChange);
+    createNewUser() {
+        addNewUser({
+            id: Math.round(Math.random() * 1000),
+            username: 'newName',
+            name: 'newName',
+            email: 'email',
+            phone: '8 800 000 00 00',
+            website: 'ololo.ru'
+        });
     }
 
     render() {
 
-        if (!this.state.users.length) return null;
+        if (this.props.fetching) {
+            return <h1>Загрузка ...</h1>
+        }
 
-        let users = this.state.users.map((user, index) => {
+        let users = this.props.users.map((user, index) => {
             return <User key={index} {...user}/>
         });
 
         return (
             <div>
-                <h1>Пользователи</h1>
+                <h1>
+                    Пользователи
+                    <button type="button" className="btn btn-primary" style={{marginLeft: "30px"}}
+                            onClick={this.createNewUser}>Добавить</button>
+                </h1>
                 {users}
             </div>
         );
     }
 }
+
+function mapUsersStoreToProps(state) {
+    return (
+        {users: state.users.users, fetching: state.users.fetching}
+    )
+}
+
+export default connect(mapUsersStoreToProps)(UsersList)

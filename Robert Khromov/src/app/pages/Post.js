@@ -1,28 +1,31 @@
 import React, {Component} from 'react';
-import axios from "axios";
 import DetailPost from "../components/Post";
+import {getPosts} from "../actions/post";
+import {connect} from "react-redux";
 
-export default class Post extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            post: null
-        }
-    }
-
+class Post extends Component {
     render() {
         return (
             <div>
-                {this.state.post && <DetailPost {...this.state.post} />}
+                {this.props.post && <DetailPost {...this.props.post} />}
             </div>
         );
     }
 
     componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${this.props.params.postID}`)
-            .then(response => {
-                this.setState({post: response.data});
-            })
+        getPosts();
     }
 }
+
+function mapPostStoreToProps(state, context) {
+    for (let i = 0; i < state.posts.posts.length; i++) {
+        if (Number(state.posts.posts[i].id) === Number(context.match.params.postID)) {
+            return {post: state.posts.posts[i]}
+        }
+    }
+    return (
+        {post: null}
+    )
+}
+
+export default connect(mapPostStoreToProps)(Post);

@@ -1,12 +1,20 @@
 import React, {Component} from 'react';
 import Menu from "../components/Menu";
 import MenuItem from "../components/MenuItem";
+import {Route, Switch} from "react-router-dom";
+
+import ManePage from "../pages/Main"
+import User from "../pages/User"
+import Users from "../pages/Users"
+import Posts from "../pages/Posts"
+import Post from "../pages/Post"
+import Comments from "../pages/Comments"
+import Comment from "../pages/Comment"
 
 export default class Layout extends Component {
 
     constructor(props) {
         super(props);
-        this.brand = 'React Blog!';
     }
 
     isActive(href) {
@@ -25,7 +33,15 @@ export default class Layout extends Component {
                 <div className='container'>
                     <div className="row">
                         <div className="col-12">
-                            {this.props.children}
+                            <Switch>
+                                <Route exact path="/" component={ManePage}/>
+                                <Route exact path="/users" component={Users}/>
+                                <Route exact path="/users/:userID" component={User}/>
+                                <Route exact path="/posts" component={Posts}/>
+                                <Route exact path="/posts/:postID" component={Post}/>
+                                <Route exact path="/comments" component={Comments}/>
+                                <Route exact path="/comments/:commentID" component={Comment}/>
+                            </Switch>
                         </div>
                     </div>
                 </div>

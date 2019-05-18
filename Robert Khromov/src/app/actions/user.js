@@ -1,13 +1,19 @@
-import dispatcher from "../dispatcher";
-import {GET_USERS} from "../constants/user";
 import axios from "axios";
+import store from "../store"
 
 export function getUsers() {
-    axios.get('https://jsonplaceholder.typicode.com/users')
-        .then(response => {
-            dispatcher.dispatch({
-                type: GET_USERS,
-                data: response.data
-            });
-        });
+    return store.dispatch({
+        type: "GET_USERS",
+        payload: axios.get("https://jsonplaceholder.typicode.com/users").then(
+            response => response.data
+        )
+    });
+}
+
+export function removeUser(id) {
+    return store.dispatch({type: "DELETE_USER", payload: id})
+}
+
+export function addNewUser(user) {
+    return store.dispatch({type: "ADD_USER", payload: user})
 }
