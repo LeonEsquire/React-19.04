@@ -1,13 +1,12 @@
-import React from 'react';
-import {Link} from 'react-router';
+import React from "react";
+import {Link} from 'react-router-dom';
 
-export default class User extends React.Component {
+
+class User extends React.Component {
     render() {
-        return (
+        return(
             <div className="card border-secondary mb-3">
-                <div className="card-header">
-                    <Link to={`/users/${this.props.id}`}>{this.props.username}</Link>
-                </div>
+                <div className="card-header">  {this.props.username} </div>
                 <div className="card-body text-secondary">
                     <p>{this.props.name}</p>
                     <p>{this.props.email}</p>
@@ -18,3 +17,6 @@ export default class User extends React.Component {
         );
     }
 }
+
+export default User;
+

@@ -1,9 +1,9 @@
-import React from 'react';
-import UsersList from '../components/UsersList';
+import React from "react";
+import UsersList from "../components/UsersList";
 
-export default class Users extends React.Component {
+class Users extends React.Component {
     render() {
-        return (
+        return(
             <div>
                 {
                     (!this.props.children) ?
@@ -11,7 +11,10 @@ export default class Users extends React.Component {
                         :
                         (this.props.children)
                 }
+
             </div>
         );
     }
 }
+
+export default Users;
