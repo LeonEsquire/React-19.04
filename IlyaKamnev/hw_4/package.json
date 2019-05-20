@@ -1,5 +1,5 @@
 {
-  "name": "lesson2",
+  "name": "app-react-hw4",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,11 +8,11 @@
     "watch": "webpack --mode development --watch",
     "build": "webpack --mode production"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "create-react-class": "^15.6.3",
-    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
