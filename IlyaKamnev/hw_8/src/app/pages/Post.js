@@ -1,28 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PostProfile from "../components/Post";
 
-export default class Post extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      post: null
-    };
-  }
+const Post = (props) => {
 
-  render() {
-    return <div>{this.state.post && <PostProfile {...this.state.post} />}</div>;
-  }
+  const [post, setPost] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
     axios
       .get(
-        "http://jsonplaceholder.typicode.com/posts/" + this.props.match.params.postId
+        "http://jsonplaceholder.typicode.com/posts/" + props.match.params.postId
       )
       .then(response => {
-        this.setState({
-          post: response.data
-        });
+        setPost(response.data);
       });
-  }
+    }, []);
+
+  return <div>{ post && <PostProfile {...post} /> }</div>;
 }
+
+export default Post;
