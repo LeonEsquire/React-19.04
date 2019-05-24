@@ -1,9 +1,8 @@
 import React from 'react';
 import UsersList from '../components/UsersList';
 
-export default class Users extends React.Component {
-  render()
-  {
-    return <UsersList/>
-  }
+const Users = (props) => {
+  return <UsersList />
 }
+
+export default Users;

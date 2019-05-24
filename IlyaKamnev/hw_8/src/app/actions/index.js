@@ -1,4 +1,3 @@
-
 const commentsLoaded = (newComments) => {
     return {
         type: 'COMMENTS_LOADED',
