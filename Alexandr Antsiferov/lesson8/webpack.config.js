@@ -3,20 +3,21 @@ const path = require('path');
 module.exports = {
 	entry: './src/app.js',
 	output: {
-		filename: 'main.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'main.js'
 	},
 	mode: 'development',
 	module: {
-		rules: [
+		rules: 
+		[
 			{
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
-				use: "babel-loader"
+				test: /\.js$/,
+				loader: "babel-loader",
+				exclude: "/node_modules/"
 			},
 			{
 				test: /\.css$/,
-				use: ['style-loader', 'css-loader']
+				loader: ['style-loader', 'css-loader']
 			}
 		]
 	},

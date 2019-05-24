@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default class User extends Component {
-  render() {
-    return (
+export default class User extends React.Component {
+  render()
+  {
+    return(
       <div className="card border-secondary mb-3">
         <div className="card-header">
         <Link to={`/users/${this.props.id}`}>
@@ -16,7 +17,8 @@ export default class User extends Component {
           <p>{this.props.phone}</p>
           <p>{this.props.website}</p>
         </div>
+        
       </div>
-    )
+    );
   }
 }
