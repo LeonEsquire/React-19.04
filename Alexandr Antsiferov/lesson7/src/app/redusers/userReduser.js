@@ -1,11 +1,11 @@
 export default function reducer(
   state = {
-    users: []
+    user: {}
   },
   action) {
   switch (action.type) {
-    case "FETCH_USERS_FULFILLED": {
-      return { ...state, users: action.payload };
+    case "FETCH_USER_FULFILLED": {
+      return { ...state, user: action.payload };
     }
   }
   return state;
