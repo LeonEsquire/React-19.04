@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {fetchUser} from'../actions/userAction';
+import {fetchUser, resetUser} from'../actions/userAction';
 import { connect } from 'react-redux';
 import UserProfile from '../components/User';
 
@@ -15,6 +15,10 @@ class User extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchUser(this.props.match.params.userId));
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(resetUser());
   }
 }
 
