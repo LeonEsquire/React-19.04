@@ -14,31 +14,27 @@ import Comments from "../pages/Comments";
 import Comment from "../pages/Comment";
 
 
-export default class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.brand = 'React blog!';
-  }
-
-  isActive(href) {
+const Layout = props => {
+  
+  const brand = 'React blog!';
+  
+  const isActive = href => {
     return window.location.pathname === href;
   } 
 
-  render()
-  {
-    return(
+  return (
       <div>
-        <Menu brand={this.brand}>
-          <MenuItem href="/" active={this.isActive('/')}>
+        <Menu brand={brand}>
+          <MenuItem href="/" active={isActive('/')}>
             Главная
           </MenuItem>
-          <MenuItem href="/users" active={this.isActive('/users')}>
+          <MenuItem href="/users" active={isActive('/users')}>
             Пользователи
           </MenuItem>
-          <MenuItem href="/posts" active={this.isActive('/posts')}>
+          <MenuItem href="/posts" active={isActive('/posts')}>
             Статьи
           </MenuItem>
-          <MenuItem href="/comments" active={this.isActive('/comments')}>
+          <MenuItem href="/comments" active={isActive('/comments')}>
             Комментарии
           </MenuItem>
         </Menu>
@@ -62,6 +58,7 @@ export default class Layout extends React.Component {
           &copy; 2019
         </footer>
       </div>
-    );
-  }
+  );
 }
+
+export default Layout;
