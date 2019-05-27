@@ -1,37 +1,46 @@
 import React from 'react';
-import axios from 'axios';
-import User from './User';
+import {connect} from 'react-redux';
+import {fetchUsers} from '../actions/usersActions';
+import {Link} from 'react-router-dom';
 
-export default class UsersList extends React.Component {
+class UsersList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            users: []
-        };
     }
 
-    componentDidMount()
-    {
-        axios.get('https://jsonplaceholder.typicode.com/users/')
-            .then((response) => {
-                this.setState({users: response.data})
-            })
+    componentDidMount() {
+        this.props.dispatch(fetchUsers())
     }
 
     render() {
-        if(!this.state.users.length) {
-            return null;
-        }
-
-        const users = this.state.users.map((user, index) => {
-            return <User key={index} {...user} />
-        })
+        const {users} = this.props;
+        const mappedUsers = users.map(user =>
+            <div key={user.id} className="card border-secondary mb-3">
+                <div className="card-header">
+                    <Link to={`/users/${user.id}`}>{user.username}</Link>
+                </div>
+                <div className="card-body text-secondary">
+                    <p>{user.name}</p>
+                    <p>{user.email}</p>
+                    <p>{user.phone}</p>
+                    <p>{user.website}</p>
+                </div>
+            </div>);
 
         return (
-            <div>
-                <h1>Пользователи</h1>
-                {users}
-            </div>
+            <>
+            <h1>Пользователи</h1>
+            {mappedUsers}
+            </>
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        users: state.users.users,
+        usersFetched: state.users.fetched
+    };
+}
+
+export default connect(mapStateToProps)(UsersList);
