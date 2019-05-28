@@ -3,7 +3,7 @@ import axios from "axios";
 import Post from "./Post";
 
 const PostsList = props => {
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     axios
