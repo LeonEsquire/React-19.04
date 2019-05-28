@@ -6,7 +6,7 @@ import UsersList from "../components/UsersList";
 class Users extends Component {
   render() {
     return (
-      <div>{!this.props.children ? <UsersList users={this.props.users}/> : this.props.children}</div>
+      <UsersList users={this.props.users}/>
     );
   }
 
