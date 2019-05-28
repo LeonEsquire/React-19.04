@@ -3,7 +3,7 @@ import axios from "axios";
 import User from "./User";
 
 const UsersList = props => {
-  const [users, setUsers] = useState({});
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios
